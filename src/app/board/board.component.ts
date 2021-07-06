@@ -9,7 +9,7 @@ let More = require('highcharts/highcharts-more');
 import options from './configs/barchartwithdrilldownconfig';
 import splineopts from './configs/splineconfig';
 import columnstacked from './configs/columnstackedandgrouped';
-import basicbar from './basicbar';
+import basicbar from './configs/basicbar';
 import piewithdrilldown from './configs/piewithdrilldown';
 import mixed from './configs/mixed'
 
