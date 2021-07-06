@@ -6,12 +6,12 @@ let Boost = require('highcharts/modules/boost');
 let noData = require('highcharts/modules/no-data-to-display');
 let More = require('highcharts/highcharts-more');
 // let drillDown = require('highcharts/highcharts-drilldown');
-import options from './barchartwithdrilldownconfig';
-import splineopts from './splineconfig';
-import columnstacked from './columnstackedandgrouped';
+import options from './configs/barchartwithdrilldownconfig';
+import splineopts from './configs/splineconfig';
+import columnstacked from './configs/columnstackedandgrouped';
 import basicbar from './basicbar';
-import piewithdrilldown from './piewithdrilldown';
-import mixed from './mixed'
+import piewithdrilldown from './configs/piewithdrilldown';
+import mixed from './configs/mixed'
 
 
 Boost(Highcharts);
