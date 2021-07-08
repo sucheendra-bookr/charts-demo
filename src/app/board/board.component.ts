@@ -1,18 +1,12 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ComponentFactoryResolver, Input, OnInit, Renderer2, ViewChild, ViewContainerRef } from '@angular/core';
 import * as Highcharts from 'highcharts';
 import Drilldown from 'highcharts/modules/drilldown';
+import { OutputGraphComponent } from '../output-graph/output-graph.component';
+
 declare var require: any;
 let Boost = require('highcharts/modules/boost');
 let noData = require('highcharts/modules/no-data-to-display');
 let More = require('highcharts/highcharts-more');
-// let drillDown = require('highcharts/highcharts-drilldown');
-import options from './configs/barchartwithdrilldownconfig';
-import splineopts from './configs/splineconfig';
-import columnstacked from './configs/columnstackedandgrouped';
-import basicbar from './configs/basicbar';
-import piewithdrilldown from './configs/piewithdrilldown';
-import mixed from './configs/mixed'
-
 
 Boost(Highcharts);
 noData(Highcharts);
@@ -27,23 +21,20 @@ Drilldown(Highcharts);
 })
 export class BoardComponent implements OnInit {
 
-  barDrillDownOpts: any = options;
-  spLineOpts: any = splineopts;
-  columnstacked: any = columnstacked;
-  basicbarOpts: any = basicbar;
-  pieWithDrilldownOpts: any = piewithdrilldown;
-  mixedOpts: any = mixed;
-  constructor() { }
+  @Input() data;
 
-  ngOnInit(){
-    console.log("Options ",options);
+  constructor(
+    private renderer: Renderer2,
+  ) {
+  }
 
-     Highcharts.chart('container-bar-drilldown',this.barDrillDownOpts);
-     Highcharts.chart('container-spline',this.spLineOpts);
-     Highcharts.chart('container-column-stacked',this.columnstacked);
-     Highcharts.chart('container-basic-bar',this.basicbarOpts);
-     Highcharts.chart('container-pie-with-drilldown',this.pieWithDrilldownOpts);
-     Highcharts.chart('container-mixed',this.mixedOpts);
+  ngOnInit() {
+
+      Object.keys(this.data).forEach((ele) => {
+      var elem =  this.renderer.createElement('div');
+      this.renderer.setProperty(elem, 'id', ele);
+      this.renderer.appendChild(document.body, elem);
+      Highcharts.chart(ele, this.data[ele]);
+    })
    }
-
 }
